@@ -3,12 +3,22 @@ import { useState, useEffect } from 'react';
 import { copy, linkIcon, loader, tick} from '../assets';
 
 const Demo = () => {
+  const [article, setarticle] = useState({
+    url: '',
+    summary: '',
+  });
+
+  const handleSubmit = async (e) => {
+    alert('Submitted');
+  }
+
+
   return (
     <section className='met-16 w-full max-w-xl'>
       {/* {Search} */}
       <div className='flex flex-col w-full gap-2'>
         <form className='relative flex justify-center items-center'
-        onSubmit={() => {}}
+        onSubmit={handleSubmit}
         >
           <img 
           src={linkIcon}
@@ -17,15 +27,27 @@ const Demo = () => {
           />
 
           <input 
-          type="url"
+          type='url'
           placeholder='Enter a valid URL'
-          value=""
-          onChange={() => {}}
+          value={article.url}
+          onChange={(e) => setarticle({ ...
+            article, url: e.target.value
+          })}
           required
-          className='url_input peer'
+          className='url_input peer-focus:border-gray-700 peer-focus:text-gray-700'
           />
+
+          <button
+            type='submit'
+            className='submit_btn'
+          >
+            ⏎
+          </button>
         </form>
+        {/* { Browser URL History } */}
       </div>
+
+      {/* {Display Results} */}
     </section>
   )
 }
